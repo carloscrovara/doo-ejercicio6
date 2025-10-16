@@ -20,7 +20,7 @@ namespace Ejercicios6_CROVARACarlosMarino
         public override void MostrarInfo()
         {
             base.MostrarInfo();
-            Console.WriteLine($"Cilindrada: {cilindrada}");
+            Console.WriteLine($"Cilindrada de moto: {cilindrada}");
         }
     }
 }
