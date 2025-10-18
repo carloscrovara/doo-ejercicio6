@@ -92,6 +92,7 @@ class Program
         empleados.Add(new EmpleadoTemporal(2, "Mariano", "González", 0, 100, 160));
         empleados.Add(new EmpleadoPermanente(3, "Alicia", "Gallardo", 60000, 10));
         empleados.Add(new EmpleadoTemporal(4, "Camila", "Vergara", 0, 80, 120));
+        empleados.Add(new EmpleadoPermanente(25, "Javier", "Iglesias", 70000, 20));
 
         void AgregarEmpleado(Empleado e)
         {
@@ -152,7 +153,7 @@ class Program
             }
         }
 
-        EliminarEmpleado(3);
+        EliminarEmpleado(25);
 
         Console.WriteLine($"Ejercicio 2 - Sistema de empleados");
         Console.WriteLine();
@@ -170,6 +171,7 @@ class Program
         productos.Add(new ProductoAlimenticio(2, "Yogurt", 1500, new DateTime(2025, 5, 30)));
         productos.Add(new ProductoElectronico(3, "Smart TV", 150000, 12));
         productos.Add(new ProductoAlimenticio(4, "Pan", 700, new DateTime(2025, 4, 15)));
+        productos.Add(new ProductoAlimenticio(50, "Queso", 2500, new DateTime(2025, 7, 20)));
 
         void AgregarProducto(Producto p)
         {
@@ -225,7 +227,7 @@ class Program
             }
         }
 
-        EliminarProducto(3);
+        EliminarProducto(50);
 
         Console.WriteLine($"Ejercicio 3 - Inventario de productos");
         Console.WriteLine();
@@ -239,22 +241,22 @@ class Program
         // Ejercicio 4
         List<Persona> personas = new List<Persona>();
 
-        personas.Add(new Alumno(1, "Santiago", "Crovara", 133, 8.5f));
-        personas.Add(new Profesor(2, "María", "Villalba", "Matemáticas", 900000));
-        personas.Add(new Alumno(3, "Luciana", "Castagnon", 233, 9.5f));
-        personas.Add(new Profesor(4, "Javier", "Peralta Ramos", "Historia", 850000));
+        personas.Add(new Alumno(1, "Santiago Crovara", 20, 133, 8.5f));
+        personas.Add(new Profesor(2, "María Villalba", 55, "Matemáticas", 900000));
+        personas.Add(new Alumno(3, "Luciana Castagnon", 24, 233, 9.5f));
+        personas.Add(new Profesor(4, "Javier Peralta Ramos", 60, "Historia", 850000));
 
         void AgregarPersona(Persona p)
         {
             personas.Add(p);
         }
 
-        AgregarPersona(new Alumno(5, "Valentina", "González", 003, 7.5f));
+        AgregarPersona(new Alumno(5, "Valentina González", 23, 003, 7.5f));
 
         void ModificarPersona(
             int id, 
             string nuevoNombre, 
-            string nuevoApellido, 
+            int nuevaEdad, 
             int? nuevoLegajo = null, 
             float? nuevoPromedio = null, 
             string nuevaMateria = null, 
@@ -265,7 +267,7 @@ class Program
                 if (p.Id == id)
                 {
                     p.Nombre = nuevoNombre;
-                    p.Apellido = nuevoApellido;
+                    p.Edad = nuevaEdad;
 
                     if (p is Alumno alumno)
                     {
@@ -285,8 +287,8 @@ class Program
             }
         }
 
-        ModificarPersona(1, "Santiago", "Crovara", nuevoLegajo: 104, nuevoPromedio: 9.1f);
-        ModificarPersona(2, "María", "Villalba", nuevaMateria: "Física", nuevoSueldo: 950000);
+        ModificarPersona(1, "Santiago Crovara", 20, nuevoLegajo: 104, nuevoPromedio: 9.1f);
+        ModificarPersona(2, "María Villalba", 55, nuevaMateria: "Física", nuevoSueldo: 950000);
 
         void EliminarPersona(int id)
         {
@@ -314,6 +316,132 @@ class Program
         foreach (Persona p in personas)
         {
             p.MostrarInfo();
+            Console.WriteLine();
+        }
+
+        // Ejercicio 5
+        List<Cuenta> cuentas = new List<Cuenta>();
+
+        cuentas.Add(new CajaAhorro(1, "Mateo Crovara", 150000, 0.05f));
+        cuentas.Add(new CuentaCorriente(2, "Ana Vergara", 50000, 20000));
+        cuentas.Add(new CajaAhorro(3, "Luis Palermo", 300000, 0.10f));
+        cuentas.Add(new CuentaCorriente(4, "Sofía Iglesias", 75000, 15000));
+        cuentas.Add(new CajaAhorro(10, "Diego Maradona", 100000, 0.02f));
+
+        void AltaCuenta(Cuenta c)
+        {
+            cuentas.Add(c);
+        }
+
+        AltaCuenta(new CajaAhorro(5, "Camila Crovara", 205000, 0.05f));
+
+        void ModificarCuenta(
+            int nroCuenta, 
+            string nuevoTitular, 
+            float nuevoSaldo, 
+            float? nuevaTasaInteres = null, 
+            float? nuevoDescubiertoLimite = null)
+        {
+            foreach (Cuenta c in cuentas)
+            {
+                if (c.NumeroCuenta == nroCuenta)
+                {
+                    c.Titular = nuevoTitular;
+                    c.Saldo = nuevoSaldo;
+
+                    if (c is CajaAhorro cajaAhorro && nuevaTasaInteres.HasValue)
+                    {
+                        cajaAhorro.TasaInteres = nuevaTasaInteres.Value;
+                    }
+                    else if (c is CuentaCorriente cuentaCorriente && nuevoDescubiertoLimite.HasValue)
+                    {
+                        cuentaCorriente.DescubiertoLimite = nuevoDescubiertoLimite.Value;
+                    }
+                }
+            }
+        }
+
+        ModificarCuenta(1, "Mateo Crovara", 160000, nuevaTasaInteres: 0.06f);
+
+        void BajaCuenta(int nroCuenta)
+        {
+            Cuenta cuentaADarDeBaja = null;
+
+            foreach (Cuenta c in cuentas)
+            {
+                if (c.NumeroCuenta == nroCuenta)
+                {
+                    cuentaADarDeBaja = c;
+                }
+            }
+
+            if (cuentaADarDeBaja != null)
+            {
+                cuentas.Remove(cuentaADarDeBaja);
+            }
+        }
+
+        BajaCuenta(10);
+
+        void DepositarEnCuenta(int nroCuenta, float monto)
+        {
+            foreach (Cuenta c in cuentas)
+            {
+                if (c.NumeroCuenta == nroCuenta)
+                {
+                    c.Saldo += monto;
+                }
+            }
+        }
+
+        DepositarEnCuenta(2, 10000);
+
+        void ExtraerEnCuenta(int nroCuenta, float monto)
+        {
+            foreach (Cuenta c in cuentas)
+            {
+                if (c.NumeroCuenta == nroCuenta)
+                {
+                    if (c is CajaAhorro cajaAhorro)
+                    {
+                        if (cajaAhorro.Saldo >= monto)
+                        {
+                            cajaAhorro.Saldo -= monto;
+                        }
+                    }
+                    else if (c is CuentaCorriente cuentaCorriente)
+                    {
+                        if (cuentaCorriente.Saldo + cuentaCorriente.DescubiertoLimite >= monto)
+                        {
+                            cuentaCorriente.Saldo -= monto;
+                        }
+                    }
+                }
+            }
+        }
+
+        ExtraerEnCuenta(4, 80000);
+        ExtraerEnCuenta(5, 5000);
+
+        void AplicarInteresesEnCajasDeAhorro()
+        {
+            foreach (Cuenta c in cuentas)
+            {
+                if (c is CajaAhorro cajaAhorro)
+                {
+                    float interes = cajaAhorro.Saldo * cajaAhorro.TasaInteres;
+                    cajaAhorro.Saldo += interes;
+                }
+            }
+        }
+        AplicarInteresesEnCajasDeAhorro();
+
+        Console.WriteLine($"Ejercicio 5 - Sistema Bancario");
+        Console.WriteLine();
+
+        foreach (Cuenta c in cuentas)
+        {
+            c.MostrarInfo();
             Console.WriteLine();
         }
     }

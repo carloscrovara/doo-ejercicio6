@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class CuentaCorriente : Cuenta
     {
-        private float descubiertoLimite;
+        protected float descubiertoLimite;
 
         public CuentaCorriente() : base() { }
 

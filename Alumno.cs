@@ -2,12 +2,12 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class Alumno : Persona 
     {
-        private int legajo;
-        private float promedio;
+        protected int legajo;
+        protected float promedio;
 
         public Alumno() : base() { }
 
-        public Alumno(int id, string nombre, string apellido, int legajo, float promedio) : base(id, nombre, apellido)
+        public Alumno(int id, string nombre, int edad, int legajo, float promedio) : base(id, nombre, edad)
         {
             this.legajo = legajo;
             this.promedio = promedio;

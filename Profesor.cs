@@ -2,12 +2,12 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class Profesor : Persona
     {
-        private string materia;
-        private float sueldo;
+        protected string materia;
+        protected float sueldo;
 
         public Profesor() : base() { }
 
-        public Profesor(int id, string nombre, string apellido, string materia, float sueldo) : base(id, nombre, apellido)
+        public Profesor(int id, string nombre, int edad, string materia, float sueldo) : base(id, nombre, edad)
         {
             this.materia = materia;
             this.sueldo = sueldo;

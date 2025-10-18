@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class Camion : Vehiculo
     {
-        private float capacidadCarga;
+        protected float capacidadCarga;
 
         public Camion() : base() { }
 

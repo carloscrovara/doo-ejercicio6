@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class Auto : Vehiculo
     {
-        private int cantidadPuertas;
+        protected int cantidadPuertas;
 
         public Auto() : base() { }
 

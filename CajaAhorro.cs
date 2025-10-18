@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class CajaAhorro : Cuenta
     {
-        private float tasaInteres;
+        protected float tasaInteres;
 
         public CajaAhorro() : base() { }
 

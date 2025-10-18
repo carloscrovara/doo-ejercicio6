@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class Moto : Vehiculo
     {
-        private int cilindrada;
+        protected int cilindrada;
 
         public Moto() : base() { }
 

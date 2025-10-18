@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class ProductoAlimenticio : Producto
     {
-        private DateTime fechaVencimiento;
+        protected DateTime fechaVencimiento;
 
         public ProductoAlimenticio() : base() { }
 

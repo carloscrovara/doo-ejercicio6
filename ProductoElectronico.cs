@@ -2,7 +2,7 @@ namespace Ejercicios6_CROVARACarlosMarino
 {
     internal class ProductoElectronico : Producto 
     {
-        private int mesesGarantia;
+        protected int mesesGarantia;
 
         public ProductoElectronico() : base() { }
 

@@ -4,15 +4,15 @@ namespace Ejercicios6_CROVARACarlosMarino
     {
         protected int id;
         protected string nombre;
-        protected string apellido;
+        protected int edad;
 
         public Persona() { }
 
-        public Persona(int id, string nombre, string apellido)
+        public Persona(int id, string nombre, int edad)
         {
             this.id = id;
             this.nombre = nombre;
-            this.apellido = apellido;
+            this.edad = edad;
         }
 
         public int Id
@@ -27,15 +27,15 @@ namespace Ejercicios6_CROVARACarlosMarino
             set => nombre = value;
         }
 
-        public string Apellido
+        public int Edad
         {
-            get => apellido;
-            set => apellido = value;
+            get => edad;
+            set => edad = value;
         }
 
         public virtual void MostrarInfo()
         {
-            Console.WriteLine($"Id: {id}, Nombre: {nombre}, Apellido: {apellido}");
+            Console.WriteLine($"Id: {id}, Nombre: {nombre}, Edad: {edad}");
         }
     }
 }
